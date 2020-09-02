@@ -1,15 +1,19 @@
 from pynput.mouse import Listener
+import pickle
+movements = []
 
 def on_move(x, y):
-    print('Pointer moved to {0}'.format(
-        (x, y)))
+    movements.append([x,y])
 
 def on_click(x, y, button, pressed):
-    print('{0} at {1}'.format(
-        'Pressed' if pressed else 'Released',
-        (x, y)))
+    print(movements)
+    f = open('movements.pkl', 'wb')
+    pickle.dump(movements, f)
+    f.close()
+    exit()
+
     if not pressed:
-        # Stop listener
+
         return False
 
 def on_scroll(x, y, dx, dy):
