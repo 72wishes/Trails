@@ -1,9 +1,12 @@
 from pynput.mouse import Listener
 import pickle
+import time
+
 movements = []
 
 def on_move(x, y):
-    movements.append([x,y])
+    timenow = time.time()
+    movements.append([x,y,timenow])
 
 def on_click(x, y, button, pressed):
     print(movements)
